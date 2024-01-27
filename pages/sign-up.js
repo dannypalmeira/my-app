@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {supabase} from "../lib/initSupabase";
 import Link from "next/link";
 import Layout from "../components/Layout";
+import styles from "../styles/Login.module.css";
+
 
 const SignUp = ({logout}) => {
     const [email, setEmail] = useState("")
@@ -47,9 +49,10 @@ const SignUp = ({logout}) => {
 
             <h1>Cadastre-se</h1>
 
-            <form onSubmit={signIn} className={`flex flex-col`}>
+            <form onSubmit={signIn}  className={styles.formContainer}>
                 <input
                     type="text"
+                    className={styles.input}
                     required
                     placeholder={"Email"}
                     onChange={e => setEmail(e.target.value)}
@@ -57,14 +60,15 @@ const SignUp = ({logout}) => {
                 <input
                     required
                     type="password"
+                    className={styles.input}
                     placeholder={"Password"}
                     onChange={e => setPassword(e.target.value)}
                 />
-                <button type={"submit"}>Send</button>
+                <button className={styles.button} type={"submit"}>Enviar</button>
             </form>
 
-            <div className={`text-center my-5`}>
-                <p className={`text-center cursor-pointer hover:underline text-brand secondary mt-10`}>Já tem uma conta? <Link href={"/login"}><a>Clique aqui para entrar</a></Link></p>
+            <div className={`space-h-20 text-center my-5`}>
+                <p className={`text-center cursor-pointer hover:underline text-brand secondary mt-10`}>Já tem uma conta? &nbsp;&nbsp; <Link href={"/login"}><button className={styles.button} >Clique aqui para entrar</button></Link></p>
             </div>
         </Layout>
     );

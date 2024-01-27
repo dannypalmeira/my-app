@@ -36,7 +36,7 @@ const ResetPassword = ({router}) => {
 
             {!success &&
                 <form onSubmit={updatePassword}>
-                    <input type="password" placeholder={"New password"} onChange={e => setNewPassword(e.target.value)}/>
+                    <input type="password" placeholder={"Nova senha"} onChange={e => setNewPassword(e.target.value)}/>
                     <button type={"submit"}>Reset</button>
                 </form>
             }

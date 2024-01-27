@@ -3,6 +3,7 @@ import {supabase} from "../lib/initSupabase";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Layout from "../components/Layout";
+import styles from "../styles/Login.module.css";
 
 const Login = ({logout}) => {
     const router = useRouter()
@@ -70,41 +71,40 @@ const Login = ({logout}) => {
 
             <h1>Login</h1>
 
-            <div>
+            <div className={styles.formContainer}>
 
                 {forgotPassword ?
-                    <form onSubmit={requestReset} className={`flex flex-col`}>
-                        <input type="email" placeholder={"Email"} onChange={(e) => setForgotEmail(e.target.value)}/>
-                        <button className={`primary mt-2`} type={"submit"}>Redefinir senha</button>
+                    <form onSubmit={requestReset} >
+                        <input className={styles.input} type="email" placeholder={"Email"} onChange={(e) => setForgotEmail(e.target.value)}/>
+                        <button className={styles.button} type={"submit"}>Redefinir senha</button>
                     </form>
                     :
-                    <form onSubmit={signIn} className={`flex flex-col`}>
+                    <form onSubmit={signIn} className={styles.formContainer}>
                         <input
-                            className={`border-2 my-1`}
+                            className={styles.input}
                             type="text"
                             required
                             placeholder={"Email"}
                             onChange={e => setEmail(e.target.value)}
                         />
                         <input
-                            className={`border-2 my-1`}
+                            className={styles.input}
                             required
                             type="password"
                             placeholder={"Password"}
                             onChange={e => setPassword(e.target.value)}
                         />
-                        <button className={`primary mt-1`} type={"submit"}>Login</button>
+                        <button className={styles.button} type={"submit"}>Entrar</button>
+                        <div>{!forgotPassword ? "Esqueceu a senha?" : "Voltar a página de login"} <button className={styles.button} onClick={() => setForgotPassword(!forgotPassword)}>Clique aqui</button></div>
+                        
+
                     </form>
                 }
 
-                <p className={`text-center cursor-pointer hover:underline text-brand secondary mt-10`}
-                   onClick={() => setForgotPassword(!forgotPassword)}>
-                    {!forgotPassword ? "Esqueceu a senha?" : "Voltar a página de login"}
-                </p>
             </div>
 
-            <div className={`text-center my-5`}>
-                Não tem uma conta? <Link href={"/sign-up"}><a>Clique aqui para criar um usuário</a></Link>
+            <div className={`space-h-20 text-center my-5`}>
+                Não tem uma conta? &nbsp;&nbsp;&nbsp;<Link href={"/sign-up"}><button className={styles.button} > Cadastre-se</button></Link>
             </div>
         </Layout>
     );
