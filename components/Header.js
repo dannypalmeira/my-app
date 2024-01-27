@@ -26,7 +26,7 @@ const Header = () => {
                     {!user ?
                         <>
                             <Link href="/sign-up">
-                                <a className={styles.headerLink}>Sign Up</a>
+                                <a className={styles.headerLink}>Cadastre-se</a>
                             </Link>
                             <Link href="/login">
                                 <a className={styles.headerLink}>Login</a>

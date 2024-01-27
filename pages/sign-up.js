@@ -62,8 +62,9 @@ const SignUp = ({logout}) => {
                 />
                 <button type={"submit"}>Send</button>
             </form>
+
             <div className={`text-center my-5`}>
-                Já tem uma conta? <Link href={"/login"}><a>Clique aqui para entrar</a></Link>
+                <p className={`text-center cursor-pointer hover:underline text-brand secondary mt-10`}>Já tem uma conta? <Link href={"/login"}><a>Clique aqui para entrar</a></Link></p>
             </div>
         </Layout>
     );
