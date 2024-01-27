@@ -2,51 +2,48 @@ import React from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
 import {useUser} from "../lib/UserContext";
-import styles from "../styles/Navbar.module.css";
+import styles from "../styles/Home.module.css";
 
 const Header = () => {
     const {user} = useUser()
 
     return (
-        
         <header className={styles.header}>
-            <div className={styles.container}>
-                <div>
-                <Link href="/"><Image
-                src="/film-clipart.svg"
-                alt="CineAdmin - Grupo O"
-                className="dark:invert"
-                width={200}
-                height={70}
-                priority
-                /></Link>
-                </div>            
+            <Image
+              src="/film-clipart.svg"
+              alt="CineAdmin - Grupo O"
+              className="dark:invert"
+              width={200}
+              height={70}
+              priority
+            />
 
-                <ul className={styles.navContent}>
-                <Link href="/">
-                <li className={styles.buttons}>Home</li>
-          </Link>
+            <ul className={styles.headerNav}>
+                <li>
+                    <Link href="/">
+                        <a className={styles.headerLink}>Home</a>
+                    </Link>
                     {!user ?
                         <>
                             <Link href="/sign-up">
-                            <li className={styles.buttons}>Cadastre-se</li>
+                                <a className={styles.headerLink}>Sign Up</a>
                             </Link>
                             <Link href="/login">
-                            <li className={styles.buttons}>Login</li>
+                                <a className={styles.headerLink}>Login</a>
                             </Link>
                         </>
                         :
                         <>
                             <Link href="/logout">
-                            <li className={styles.buttons}>Sair</li>
+                                <a className={styles.headerLink}>Logout</a>
                             </Link>
                             <Link href="/filmes">
-                            <li className={styles.buttons}>Filmes</li>
+                                <a className={styles.headerLink}>Filmes</a>
                             </Link>
                         </>
                     }
+                </li>
             </ul>
-            </div>
         </header>
     );
 };
