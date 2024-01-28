@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../styles/WorkoutCard.module.css";
+import styles from "../styles/Card.module.css";
 import { BsTrash } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 
@@ -8,15 +8,11 @@ const WorkoutCard = ({ data, handleDelete }) => {
     <div className={styles.filmeConteiner}>
       {data?.map((item) => (
         <div key={item.id} className={styles.container}>
-          <img className={styles.img} src={item.imagem} />
-          <p className={styles.titulo}>
-            {" "}
-            Titulo: {""}
-            {item.titulo}
-          </p>
-                      
+          <img className={styles.img} src={item.imagem}  />
+          <h2 className={styles.titulo}>{item.titulo}</h2>
+          <p className={styles.reps}>Genero: {item.genero}</p>     
           <p className={styles.reps}>Ano: {item.ano}</p>
-          <p className={styles.reps}>Descricao: {item.descricao}</p>
+          <p className={`${styles.mb} ${styles.reps}`}>Descricao: {item.descricao}</p>
           
           <div className={styles.buttons}>
             <Link href={`/edit/${item.id}`}>

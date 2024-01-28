@@ -9,7 +9,7 @@ const Logout = () => {
 
     async function signOut() {
         await supabase.auth.signOut()
-        router.push('/login')
+        router.push('/')
     }
 
     return (

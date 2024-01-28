@@ -16,16 +16,16 @@ const Header = () => {
 
             <ul className={styles.headerNav}>
                 <li>
-                    <Link href="/">
-                        <a className={styles.buttons}>Home</a>
-                    </Link>
                     {!user ?
                         <>
-                            <Link href="/sign-up">
-                                <a className={styles.buttons}>Cadastre-se</a>
-                            </Link>
+                        <Link href="/">
+                            <a className={styles.buttons}>Home</a>
+                        </Link>
                             <Link href="/login">
                                 <a className={styles.buttons}>Login</a>
+                            </Link>
+                            <Link href="/sign-up">
+                                <a className={styles.buttons}>Cadastre-se</a>
                             </Link>
                         </>
                         :
@@ -33,8 +33,8 @@ const Header = () => {
                             <Link href="/logout">
                                 <a className={styles.buttons}>Logout</a>
                             </Link>
-                            <Link href="/filmes">
-                                <a className={styles.buttons}>Filmes</a>
+                            <Link href="/create">
+                            <a className={styles.buttons}>Criar Filme</a>
                             </Link>
                         </>
                     }

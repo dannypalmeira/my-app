@@ -8,34 +8,36 @@ const Create = () => {
     titulo: "",
     imagem: "",
     descricao: "",
+    genero: "",
     ano:"",
   };
 
   const router = useRouter();
-  const [workoutData, setWorkoutData] = useState(initialState);
+  const [filmeData, setFilmeData] = useState(initialState);
 
-  const { titulo, imagem, descricao, ano } = workoutData;
+  const { titulo, imagem, genero, descricao, ano } = filmeData;
 
   const handleChange = (e) => {
-    setWorkoutData({ ...workoutData, [e.target.name]: e.target.value });
+    setFilmeData({ ...filmeData, [e.target.name]: e.target.value });
   };
 
-  const createWorkout = async () => {
+  const criarNovoFilme = async () => {
     const user = supabase.auth.user();
 
     const { data, error } = await supabase
-      .from("workouts")
+      .from("filmes")
       .insert({
         titulo,
-        imagem,
-        descricao,
+        genero,
         ano,
-        user_id: user?.id,
+        descricao,
+        imagem,
+        created_by: user?.id,
       })
       .single();
-    alert("Workout created successfully");
-    setWorkoutData(initialState);
-    router.push("/");
+    alert("Filme criado com sucesso!");
+    setFilmeData(initialState);
+    router.push("/filmes");
   };
 
   return (
@@ -43,7 +45,7 @@ const Create = () => {
       <div className={styles.container}>
         <div className={styles.form}>
           <p className={styles.title}>Adicione um filme</p>
-          <label className={styles.label}>Titulo:</label>
+          <label className={styles.label}>Titulo</label>
           <input
             type="text"
             name="titulo"
@@ -52,14 +54,14 @@ const Create = () => {
             className={styles.input}
             placeholder="Titulo do filme"
           />
-          <label className={styles.label}>Imagem:</label>
+          <label className={styles.label}>Genero:</label>
           <input
             type="text"
-            name="imagem"
-            value={imagem}
+            name="genero"
+            value={genero}
             onChange={handleChange}
             className={styles.input}
-            placeholder="Imagem"
+            placeholder="Genero"
           />
           <label className={styles.label}>Ano:</label>
           <input
@@ -77,10 +79,19 @@ const Create = () => {
             value={descricao}
             onChange={handleChange}
             className={styles.input}
-            placeholder="Descricao"
+            placeholder="Descrição"
+          />
+          <label className={styles.label}>Imagem</label>
+          <input
+            type="text"
+            name="imagem"
+            value={imagem}
+            onChange={handleChange}
+            className={styles.input}
+            placeholder="imagem"
           />
 
-          <button className={styles.button} onClick={createWorkout}>
+          <button className={styles.button} onClick={criarNovoFilme}>
             Salvar
           </button>
         </div>
