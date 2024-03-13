@@ -45,8 +45,7 @@ const SignUp = ({logout}) => {
 
     return (
         <Layout title={"Sign Up"}>
-            {message && message}
-
+            
             <h1>Cadastre-se</h1>
 
             <form onSubmit={signIn}  className={styles.formContainer}>
@@ -64,6 +63,7 @@ const SignUp = ({logout}) => {
                     placeholder={"Password"}
                     onChange={e => setPassword(e.target.value)}
                 />
+                <span>{message && message}</span>
                 <button className={styles.button} type={"submit"}>Enviar</button>
             </form>
 

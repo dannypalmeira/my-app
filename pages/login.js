@@ -67,8 +67,6 @@ const Login = ({logout}) => {
     return (
         <Layout title={"Login"}>
 
-            {message && message}
-
             <h1>Login</h1>
 
             <div className={styles.formContainer}>
@@ -94,6 +92,7 @@ const Login = ({logout}) => {
                             placeholder={"Password"}
                             onChange={e => setPassword(e.target.value)}
                         />
+                        {message && message}
                         <button className={styles.button} type={"submit"}>Entrar</button>
                         <div>{!forgotPassword ? "Esqueceu a senha?" : "Voltar a página de login"} <button className={styles.button} onClick={() => setForgotPassword(!forgotPassword)}>Clique aqui</button></div>
                         

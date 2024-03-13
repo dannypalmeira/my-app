@@ -1,21 +1,24 @@
 import React from 'react';
 import Link from 'next/link'
-import Image from 'next/image'
 import {useUser} from "../lib/UserContext";
 import styles from "../styles/Navbar.module.css";
+import SearchBar from './SearchBar';
 
 const Header = () => {
     const {user} = useUser()
 
     return (
-        <header className={styles.header}>
+        <nav className="navbar navbar-inverse navbar-static-top">
             <div className={styles.container}>
-            <h1 className={styles.title}>
+            <p className={styles.title}>
                         CineAdmin
-                    </h1>
+                    </p>
 
+                    <SearchBar />
             <ul className={styles.headerNav}>
+                
                 <li>
+                   
                     {!user ?
                         <>
                         <Link href="/">
@@ -30,18 +33,23 @@ const Header = () => {
                         </>
                         :
                         <>
+                        
+                        <Link href="/filmes">
+                            <a className={styles.buttons}>Gerenciar Filmes</a>
+                        </Link>
+                            <Link href="/adicionar">
+                            <a className={styles.buttons}>Cadastrar um Filme</a>
+                            </Link>
+
                             <Link href="/logout">
                                 <a className={styles.buttons}>Logout</a>
-                            </Link>
-                            <Link href="/create">
-                            <a className={styles.buttons}>Criar Filme</a>
                             </Link>
                         </>
                     }
                 </li>
             </ul>
             </div>
-        </header>
+        </nav>
     );
 };
 

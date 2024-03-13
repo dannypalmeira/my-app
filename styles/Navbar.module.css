@@ -1,4 +1,6 @@
-.container {
+.body { padding-top: 70px; }
+
+nav .container {
   color: #d8d8d8;
   display: flex;
   justify-content: space-between;
@@ -9,6 +11,10 @@
 .navContent {
   display: flex;
   align-items: center;
+}
+
+.container h1 {
+  text-align: left;
 }
 
 .title {

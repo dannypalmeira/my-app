@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Layout from "@/components/Layout";
 import styles from "../../styles/Edit.module.css";
 import { supabase } from "../../utils/supabase";
 
@@ -49,9 +50,16 @@ const Edit = () => {
     router.push("/filmes");
   };
   return (
+
+    <div className={styles.container}>
+     <Layout title={"Filmes"}>
+            <h1>Editar Filme</h1>
+
+            <div className={styles.home}>
+            <div className="row">
+           
     <div className={styles.container}>
       <div className={styles.formContainer}>
-        <h1 className={styles.title}>Editar Filme</h1>
         <label className={styles.label}> Título</label>
         <input
           type="text"
@@ -97,6 +105,11 @@ const Edit = () => {
           Atualizar dados
         </button>
       </div>
+    </div>
+          </div>
+          
+      </div>
+      </Layout>
     </div>
   );
 };

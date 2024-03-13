@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase";
 import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
-import FilmeCard from "../components/FilmeCard";
+import AdicionarFilme from "../components/AdicionarFilme";
 
 export default function Filmes ({session}) {
     const [data, setData] = useState([]);
@@ -14,7 +14,6 @@ export default function Filmes ({session}) {
   }, []);
 
   const fetchFilmes = async () => {
-    const user = supabase.auth.user();
     try {
       setLoading(true);
       const { data, error } = await supabase
@@ -36,7 +35,6 @@ export default function Filmes ({session}) {
 
   const handleDelete = async (id) => {
     try {
-      const user = supabase.auth.user();
       const { data, error } = await supabase
         .from("filmes")
         .delete()
@@ -50,17 +48,13 @@ export default function Filmes ({session}) {
   };
   return (
     <div className={styles.container}>
-     <Layout title={"Filmes"}>
-            <h1>Catálogo de Filmes</h1>
+     <Layout title={"Adicionar Novo Filme"}>
+            <h1>Adicione um novo filme</h1>
 
       <div className={styles.home}>
            <div className="col-sm-6 col-md-4"> 
-            <p className={styles.filmesHeading}>
-              Olá <span className={styles.email}>{session}</span>
-            </p>
-            <div>
-                <p className={styles.filmesHeading}>Aqui estão os filmes disponíveis</p>
-                <FilmeCard data={data} handleDelete={handleDelete} />
+            <div className="row">
+                <AdicionarFilme data={data} handleDelete={handleDelete} />
               </div>
           </div>
       </div>
