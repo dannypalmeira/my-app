@@ -28,7 +28,7 @@ nav .container {
   cursor: pointer;
 }
 
-.buttons {
+.button {
   border: 1px solid #f35815;
   background-color: transparent;
   color: #d8d8d8;
@@ -37,4 +37,9 @@ nav .container {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   margin-right: 1.5rem;
+}
+
+
+.button a:hover {
+  transform: scale(1.1);
 }

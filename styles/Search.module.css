@@ -18,12 +18,13 @@
 
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .formContainer {
     display: flex;
-
+    align-items: center;
+    gap: 10px;
   }
 
 .input {
