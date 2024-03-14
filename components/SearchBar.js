@@ -1,33 +1,41 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { supabase } from "../utils/supabase";
-import styles from "../styles/Search.module.css";
-import { AiOutlineSearch } from "react-icons/ai";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import styles from '../styles/Search.module.css';
 
 const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
-  const [filme, setFilmeData] = useState("");
+
+  const handleSearch = async () => {
+    router.push({
+      pathname: "/resultado",
+      query: { busca: searchTerm }
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleSearch();
+  };
 
-    router.push(`/filmes?select=*&titulo=ilike.${filme}`);
-    setFilmeData("");
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   return (
-    <form className={styles.searchBar} onSubmit={handleSubmit}>
-      <label htmlFor="search">
-        <AiOutlineSearch className={styles.icon} />
-      </label>
-      <input
-        type="text"
-        id="search"
-        name="search"
-        value={filme}
-        onChange={(e) => setFilmeData(e.target.value)}
-      />
-    </form>
+    <div className={styles.container}>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="search"
+          placeholder="Busca por titulo"
+          className={styles.input}
+          onChange={handleChange}
+          value={searchTerm}
+        />
+        <button className={styles.button} type="submit">Buscar</button>
+      </form>
+    </div>
   );
 };
 

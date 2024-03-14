@@ -22,27 +22,27 @@ const Header = () => {
                     {!user ?
                         <>
                         <Link href="/">
-                            <a className={styles.buttons}>Home</a>
+                            <a className={styles.button}>Home</a>
                         </Link>
                             <Link href="/login">
-                                <a className={styles.buttons}>Login</a>
+                                <a className={styles.button}>Login</a>
                             </Link>
                             <Link href="/sign-up">
-                                <a className={styles.buttons}>Cadastre-se</a>
+                                <a className={styles.button}>Cadastre-se</a>
                             </Link>
                         </>
                         :
                         <>
                         
                         <Link href="/filmes">
-                            <a className={styles.buttons}>Gerenciar Filmes</a>
+                            <a className={styles.button}>Gerenciar Filmes</a>
                         </Link>
                             <Link href="/adicionar">
-                            <a className={styles.buttons}>Cadastrar um Filme</a>
+                            <a className={styles.button}>Cadastrar um Filme</a>
                             </Link>
 
                             <Link href="/logout">
-                                <a className={styles.buttons}>Logout</a>
+                                <a className={styles.button}>Logout</a>
                             </Link>
                         </>
                     }
