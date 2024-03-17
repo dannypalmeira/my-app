@@ -32,7 +32,7 @@ const AdicionarFilme = () => {
         ano,
         descricao,
         imagem,
-        created_by: user?.id,
+        user_id: user?.id,
       })
       .single();
     alert("Filme criado com sucesso!");
