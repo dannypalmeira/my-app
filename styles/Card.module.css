@@ -57,6 +57,16 @@
   font-size: 1rem;
 }
 
+.like {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #f35815;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
 .edit {
   background-color: transparent;
   border: none;
