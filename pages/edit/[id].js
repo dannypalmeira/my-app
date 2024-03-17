@@ -1,65 +1,72 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Layout from "@/components/Layout";
 import styles from "../../styles/Edit.module.css";
 import { supabase } from "../../utils/supabase";
 
 const Edit = () => {
-  const [filme, setFilme] = useState(null);
+  const [filme, setFilme] = useState({
+    titulo: "",
+    imagem: "",
+    ano: "",
+    genero: "",
+    descricao: "",
+  });
   const router = useRouter();
 
   const { id } = router.query;
   useEffect(() => {
     const getFilme = async () => {
-      if (!id) return;
-
-      const { data } = await supabase
-        .from("filmes")
-        .select("*")
-        .filter("id", "eq", id)
-        .single();
-      setFilme(data);
+      if (!id) return;      
+            try {
+        const { data, error } = await supabase
+          .from("filmes")
+          .select("*")
+          .filter("id", "eq", id)
+          .single();
+          if (error) throw error;
+        setFilme(data);      
+      } catch (error) {
+        console.error("Error fetching filme:", error.message);
+      }
     };
     getFilme();
   }, [id]);
 
   const handleOnChange = (e) => {
-    setFilme({
-      ...filme,
+    setFilme((prevFilme) => ({
+      ...prevFilme,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   const atualizarFilme = async () => {
     const { titulo, imagem, ano, genero, descricao } = filme;
-    const user = supabase.auth.user();
-    const { data } = await supabase
-      .from("filmes")
-      .update({
-        titulo,
-        imagem,
-        ano,
-        genero,
-        descricao,
-      })
-      .eq("id", id)
-      .eq("created_by", user?.id);
+    try {
+      const { data, error } = await supabase
+        .from("filmes")
+        .update({
+          titulo,
+          imagem,
+          ano,
+          genero,
+          descricao,
+        })
+        .eq("id", id)
+        .single();
 
-    alert("Dados atualizados com sucesso!");
-
-    router.push("/filmes");
+        if (error) throw error;
+        alert("Dados atualizados com sucesso!");
+        router.push("/filmes");
+        
+    } catch (error) {
+       console.error("Error updating filme:", error.message);
+    }    
   };
+  
   return (
-
-    <div className={styles.container}>
-     <Layout title={"Filmes"}>
-            <h1>Editar Filme</h1>
-
-            <div className={styles.home}>
-            <div className="row">
-           
     <div className={styles.container}>
       <div className={styles.formContainer}>
+        <h1 className={styles.title}>Editar Filme</h1>
         <label className={styles.label}> Título</label>
         <input
           type="text"
@@ -105,11 +112,6 @@ const Edit = () => {
           Atualizar dados
         </button>
       </div>
-    </div>
-          </div>
-          
-      </div>
-      </Layout>
     </div>
   );
 };
