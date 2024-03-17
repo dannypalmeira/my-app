@@ -29,32 +29,16 @@ export default function Filmes ({session}) {
     }
   };
 
-  if (loading) {
-    return <div className={styles.loading}>Carregando Filmes...</div>;
-  }
-
-  const handleDelete = async (id) => {
-    try {
-      const { data, error } = await supabase
-        .from("filmes")
-        .delete()
-        .eq("id", id)
-      fetchFilmes();
-      if (error) throw error;
-      alert("Filme cancelado");
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+ 
   return (
     <div className={styles.container}>
      <Layout title={"Adicionar Novo Filme"}>
-            <h1>Adicione um novo filme</h1>
+            <h1>Cadastre um novo filme</h1>
 
       <div className={styles.home}>
            <div className="col-sm-6 col-md-4"> 
             <div className="row">
-                <AdicionarFilme data={data} handleDelete={handleDelete} />
+                <AdicionarFilme data={data} />
               </div>
           </div>
       </div>
@@ -62,4 +46,3 @@ export default function Filmes ({session}) {
     </div>
   );
 }
-

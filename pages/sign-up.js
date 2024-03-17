@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import {supabase} from "../lib/initSupabase";
+import React, { useState, useEffect } from 'react';
+import { supabase } from "../lib/initSupabase";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import styles from "../styles/Login.module.css";
 
 
 const SignUp = ({logout}) => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [message, setMessage] = useState("")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [role, setTipo] = useState("user");
+    const [message, setMessage] = useState("");
+    const router = useRouter();
 
     useEffect(() => {
         if (logout) {
@@ -23,29 +26,48 @@ const SignUp = ({logout}) => {
     async function signIn(e) {
         e.preventDefault()
         if (!email ||!password) {
-            setMessage("Insira um email e uma senha válidos")
-            return
+            setMessage("Insira um email e uma senha válidos");
+            return;
         }
 
-        const {error, data} = await supabase.auth.signUp({
+        const {error: signUpError, data: signUpUser} = await supabase.auth.signUp({
             email,
             password
-        })
+        });
 
-        if (error) {
-            console.log({error})
-            setMessage(error.message ? error.message : "Algum dado não está correto")
+        if (signUpError) {
+            console.log({signUpError})
+            setMessage(signUpError.message ? signUpError.message : "Algum dado não está correto")
         } else {
-            console.log(data)
+            console.log(signUpUser)
             setMessage("O link para confirmação já foi encaminhado para o seu email.")
+
+            const { error: insertError } = await supabase
+            .from("users")
+            .insert([
+                {
+                    id: signUpUser.data.id,
+                    email: email,
+                    role: role
+                }
+            ]);
+
+            if (insertError){
+                console.error("Error inserting user data:", insertError.message);
+            } else {
+                console.log("User data inserted successfully");
+            }
+
             setEmail("")
             setPassword("")
+            setTipo("user")
+            router.push("/");
         }
-    }
+    };
 
     return (
-        <Layout title={"Sign Up"}>
-            
+        <Layout title={"Sign Up"}>           
+
             <h1>Cadastre-se</h1>
 
             <form onSubmit={signIn}  className={styles.formContainer}>
@@ -63,7 +85,27 @@ const SignUp = ({logout}) => {
                     placeholder={"Password"}
                     onChange={e => setPassword(e.target.value)}
                 />
-                <span>{message && message}</span>
+                <div className={styles.radioContainer}>
+                    <label className={styles.radio}>
+                        <input
+                        type='radio'
+                        value='user'
+                        checked={role === 'user'}
+                        onChange={(e) => setTipo(e.target.value)}>
+                        </input>
+                        <span>Usuário</span>
+                    </label>
+                    <label className={styles.radio}>
+                        <input
+                        type='radio'
+                        value='admin'
+                        checked={role === 'admin'}
+                        onChange={(e) => setTipo(e.target.value)}>
+                        </input>
+                        <span>Administrador</span>
+                    </label>
+                    </div>
+                {message && message}
                 <button className={styles.button} type={"submit"}>Enviar</button>
             </form>
 

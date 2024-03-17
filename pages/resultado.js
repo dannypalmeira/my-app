@@ -1,5 +1,8 @@
+
 import { useEffect, useState } from 'react';
 import FilmeCard from '@/components/FilmeCard';
+import Layout from "../components/Layout";
+import styles from "../styles/Home.module.css";
 import { useRouter } from 'next/router';
 import { supabase } from '@/lib/initSupabase';
 
@@ -24,11 +27,13 @@ const ResultadoPage = () => {
   }, [busca]);
 
   return (
-    <div>
-      <h1>Resultado da busca por "{busca}"</h1>
-      <FilmeCard data={searchResults} />
-      {searched && searchResults.length === 0 && <p>No results found.</p>}
-    </div>
+    <div className={styles.container}>
+    <Layout title={"Busca"}>      
+        <h1>Resultado da busca por "{busca}"</h1>
+              <FilmeCard data={searchResults} />
+      {searched && searchResults.length === 0 && <p>Nenhum resultado encontrado.</p>}
+      </Layout>
+   </div>
   );
 };
 

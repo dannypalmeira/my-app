@@ -1,8 +1,7 @@
-import React from 'react';
-import { useEffect, useState } from "react";
-import { supabase } from "../utils/supabase";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
+import { supabase } from "../utils/supabase";
 import FilmeCard from "../components/FilmeCard";
 
 export default function Filmes ({session}) {
@@ -17,9 +16,7 @@ export default function Filmes ({session}) {
     const user = supabase.auth.user();
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from("filmes")
-        .select("*")
+      const { data, error } = await supabase.from("filmes").select("*")
 
       if (error) throw error;
       setData(data);
@@ -37,17 +34,15 @@ export default function Filmes ({session}) {
   const handleDelete = async (id) => {
     try {
       const user = supabase.auth.user();
-      const { data, error } = await supabase
-        .from("filmes")
-        .delete()
-        .eq("id", id)
-      fetchFilmes();
-      if (error) throw error;
-      alert("Filme cancelado");
+      await supabase.from("likes").delete().eq("filme_id", id);
+      await supabase.from("filmes").delete().eq("id", id);
+      await fetchFilmes();
+      alert("Filme deletado com sucesso");
     } catch (error) {
       alert(error.message);
     }
   };
+
   return (
     <div className={styles.container}>
      <Layout title={"Filmes"}>
@@ -55,17 +50,19 @@ export default function Filmes ({session}) {
 
       <div className={styles.home}>
            <div className="col-sm-6 col-md-4"> 
+           {session?.user ? (
             <p className={styles.filmesHeading}>
-              Olá <span className={styles.email}>{session}</span>
-            </p>
+              Olá {""} <span className={styles.email}>{session.user.email}</span>
+            </p>            
+           ) : (
             <div>
-                <p className={styles.filmesHeading}>Aqui estão os filmes disponíveis</p>
+                <p className={styles.filmesHeading}>Aqui estão os filmes disponíveis e os seus preferidos.</p>
                 <FilmeCard data={data} handleDelete={handleDelete} />
               </div>
+           )}
           </div>
       </div>
       </Layout>
     </div>
   );
 }
-

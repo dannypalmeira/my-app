@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {supabase} from "../lib/initSupabase";
-import {useRouter} from "next/router";
+import React, { useEffect, useState } from 'react';
+import { supabase } from "../lib/initSupabase";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Layout from "../components/Layout";
 import styles from "../styles/Login.module.css";
@@ -25,22 +25,42 @@ const Login = ({logout}) => {
 
     async function signIn(e) {
         e.preventDefault()
-        if (!email) return
+        if (!email) return;
 
-        const {error, data} = await supabase.auth.signIn({
-            email,
-            password
-        })
-
-        if (error) {
-            console.error(error)
-            setMessage(error.message ? error.message : "Algum dado não está correto.")
-        }
-
-        if (data) {
-            setTimeout(() => {
-                router.push('/filmes')
-            }, 500)
+        try {
+            const {error, data} = await supabase.auth.signIn({
+                email,
+                password
+            });
+    
+            if (error) {
+                console.error(error)
+                setMessage(error.message ? error.message : "Algum dado não está correto.");
+                return;
+            }
+    
+            if (data) {
+                const { data: userData, error: userError } = await supabase
+                .from("users")
+                .select("role")
+                .eq("id", data.user.id)
+                .single();
+    
+                if (userError) {
+                    throw userError;
+                }
+    
+                if (userData) {
+                    localStorage.setItem('userRole', userData.role);
+                }
+                
+                setTimeout(() => {
+                    router.push('/filmes')
+                }, 500);
+            }
+        } catch (error) {
+            console.error("Error singing in:", error);
+            setMessage("Algum dado não está correto.");
         }
     }
 
@@ -92,7 +112,8 @@ const Login = ({logout}) => {
                             placeholder={"Password"}
                             onChange={e => setPassword(e.target.value)}
                         />
-                        {message && message}
+
+                        <span>{message && message}</span>
                         <button className={styles.button} type={"submit"}>Entrar</button>
                         <div>{!forgotPassword ? "Esqueceu a senha?" : "Voltar a página de login"} <button className={styles.button} onClick={() => setForgotPassword(!forgotPassword)}>Clique aqui</button></div>
                         
