@@ -2,10 +2,11 @@
 
 nav .container {
   color: #d8d8d8;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 3rem;
+  margin-top: 15px;
 }
 
 .navContent {
@@ -43,3 +44,17 @@ nav .container {
 .button a:hover {
   transform: scale(1.1);
 }
+
+
+@media (min-width: 320px) and (max-width: 768px) {
+  nav .container {
+    display: inline-block;
+    gap: 10px;
+  }
+  .container ul {
+    margin-top: 15px;
+  }
+  .button {
+    padding: 5px 10px;
+  }
+  }

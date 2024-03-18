@@ -71,12 +71,12 @@
 @media (min-width: 320px) and (max-width: 768px) {  
   .container {
     width: 100%;
-    padding: 50px;
+    padding: 20px;
   }
   .container h2 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
   .reps {
-    font-size: 1.7rem;
+    font-size: 1rem;
   }
 }
