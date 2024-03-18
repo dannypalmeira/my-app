@@ -8,13 +8,13 @@ git clone https://github.com/dannypalmeira/my-app.git
 
 ### Configuração necessária
 
-Crie um arquivo chamado .env.local no diretório raiz do exemplo:
+Crie um arquivo chamado .env.local no diretório raiz do projeto:
 ```bash
 .env.local
 ```
 
-Adicione suas chaves do seu projeto no arquivo .env.local criado anteriormente
-[Supabase](https://app.supabase.io/).
+Adicione suas chaves do seu projeto [Supabase](https://app.supabase.io/) no arquivo .env.local criado anteriormente.
+
 
 ```dotenv
 SUPABASE_URL=XXX
