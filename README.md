@@ -2,33 +2,32 @@
 
 ## Getting Started
 
-### Environment variables
+### Variáveis ​​ambientais
 
-Create the enviroment variables with the following command  
+Crie as variáveis de ambiente com o seguinte comando:
 ```bash
 cp .env.local.dist .env.local
 ```
 
-Add your keys from your [Supabase](https://app.supabase.io/) project.
+Adicione suas chaves do seu projeto [Supabase](https://app.supabase.io/) project.
 
 ```dotenv
 SUPABASE_URL=XXX
-SUPABASE_STORAGE=XXX
 SUPABASE_ANON_KEY=XXX
 ```
 
-### Install packages
+### Instalar pacotes
 
-Install all required packages with following command:
+Instale todos os pacotes necessários com o seguinte comando:
 ```bash
 yarn install
 ```
 
-## Development
+## Desenvolvimento
 Run the development server:
 
 ```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
