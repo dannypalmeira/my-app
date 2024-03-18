@@ -6,7 +6,7 @@
 
 Crie as variáveis de ambiente com o seguinte comando:
 ```bash
-cp .env.local.dist .env.local
+.env.local.dist .env.local
 ```
 
 Adicione suas chaves do seu projeto [Supabase](https://app.supabase.io/) project.
@@ -20,14 +20,14 @@ SUPABASE_ANON_KEY=XXX
 
 Instale todos os pacotes necessários com o seguinte comando:
 ```bash
-yarn install
+npm install
 ```
 
 ## Desenvolvimento
 Run the development server:
 
 ```bash
-yarn dev
+npm rum dev
 ```
 
 Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
