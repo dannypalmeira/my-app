@@ -45,6 +45,7 @@
 .buttons {
   position: absolute;
   display: flex;
+  gap: 10px;
   bottom: 0.1rem;
   right: 1rem;
 }
@@ -56,11 +57,6 @@
   color: #f35815;
   font-size: 1rem;
 }
-
-.edit {
-  margin-right: 1rem;
-}
-
 
 @media (min-width: 320px) and (max-width: 768px) {  
   .container {
