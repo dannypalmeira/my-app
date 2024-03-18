@@ -10,15 +10,10 @@ const Header = () => {
     return (
         <nav className="navbar navbar-inverse navbar-static-top">
             <div className={styles.container}>
-            <p className={styles.title}>
-                        CineAdmin
-                    </p>
-
-                    <SearchBar />
-            <ul className={styles.headerNav}>
-                
-                <li>
+            <p className={styles.title}>CineAdmin</p>
                    
+            <ul className={styles.headerNav}>                
+                <li>                   
                     {!user ?
                         <>
                         <Link href="/">
@@ -48,6 +43,7 @@ const Header = () => {
                     }
                 </li>
             </ul>
+                     <SearchBar />
             </div>
         </nav>
     );
