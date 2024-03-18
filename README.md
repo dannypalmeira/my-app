@@ -1,29 +1,34 @@
 # React x NextJS x Supabase
 
 ## Iniciando
+Clone este repositório localmente e prossiga para a próxima seção.
+```bash
+git clone https://github.com/dannypalmeira/my-app.git
+```
 
-### Variáveis ​​ambientais
+### Configuração necessária
 
-Crie a variável de ambiente:
+Crie um arquivo chamado .env.local no diretório raiz do exemplo:
 ```bash
 .env.local
 ```
 
-Adicione suas chaves do seu projeto [Supabase](https://app.supabase.io/) project.
+Adicione suas chaves do seu projeto no arquivo .env.local criado anteriormente
+[Supabase](https://app.supabase.io/).
 
 ```dotenv
 SUPABASE_URL=XXX
 SUPABASE_ANON_KEY=XXX
 ```
 
-### Instalar pacotes
+### Execute o servidor de desenvolvimento
 
-Instale todos os pacotes necessários com o seguinte comando:
+Agora instale as dependências e inicie o servidor de desenvolvimento com o seguinte comando:
 ```bash
 npm install
 ```
 
-## Desenvolvimento
+## Desenvolvendo localmente
 Run the development server:
 
 ```bash
