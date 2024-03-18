@@ -3,7 +3,6 @@
 * {
   margin: 0;
   padding: 0;
-  width: 100%;
 }
 
 html,
@@ -11,11 +10,6 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #101010;
 }
-
-div {
-  display: grid;
-}
-
 
 a {
   color: inherit;

@@ -46,7 +46,6 @@
     border-radius: 0.4rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    max-width: 30%;
   }
   
   .button:hover {

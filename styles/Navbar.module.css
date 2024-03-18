@@ -2,8 +2,7 @@
 
 nav .container {
   color: #d8d8d8;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 15px;
@@ -46,15 +45,16 @@ nav .container {
 }
 
 
-@media (min-width: 320px) and (max-width: 768px) {
+@media (min-width: 320px) and (max-width: 900px) {
   nav .container {
-    display: inline-block;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
   }
   .container ul {
     margin: 15px 15px 15px 0;
   }
   .button {
+    margin-right: 0.5rem;
     padding: 5px 10px;
   }
   }
