@@ -48,7 +48,7 @@
   bottom: 0.1rem;
   right: 1rem;
 }
-.delete {
+.delete, .edit, .like {
   background-color: transparent;
   border: none;
   outline: none;
@@ -58,12 +58,6 @@
 }
 
 .edit {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: #f35815;
-  font-size: 1rem;
   margin-right: 1rem;
 }
 
