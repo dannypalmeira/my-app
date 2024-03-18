@@ -1,6 +1,6 @@
-# NextJS x Supabase Boilerplate
+# NextJS x Supabase
 
-## Getting Started
+## Iniciando
 
 ### Variáveis ​​ambientais
 
