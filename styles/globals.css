@@ -11,6 +11,10 @@ body {
   background-color: #101010;
 }
 
+div {
+  display: grid;
+}
+
 
 a {
   color: inherit;
