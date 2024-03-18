@@ -21,15 +21,15 @@ SUPABASE_URL=XXX
 SUPABASE_ANON_KEY=XXX
 ```
 
-### Execute o servidor de desenvolvimento
+### Instalar pacotes
 
-Agora instale as dependências e inicie o servidor de desenvolvimento com o seguinte comando:
+Instale todos os pacotes necessários com o seguinte comando:
 ```bash
 npm install
 ```
 
 ## Desenvolvendo localmente
-Run the development server:
+Execute o servidor de desenvolvimento con o comando:
 
 ```bash
 npm rum dev
