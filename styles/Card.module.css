@@ -57,7 +57,7 @@
   font-size: 1rem;
 }
 
-.like {
+.edit {
   background-color: transparent;
   border: none;
   outline: none;
@@ -67,12 +67,16 @@
   margin-right: 1rem;
 }
 
-.edit {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: #f35815;
-  font-size: 1rem;
-  margin-right: 1rem;
+
+@media (min-width: 320px) and (max-width: 768px) {  
+  .container {
+    width: 100%;
+    padding: 50px;
+  }
+  .container h2 {
+    font-size: 3rem;
+  }
+  .reps {
+    font-size: 1.7rem;
+  }
 }
