@@ -1,12 +1,12 @@
-# NextJS x Supabase
+# React x NextJS x Supabase
 
 ## Iniciando
 
 ### Variáveis ​​ambientais
 
-Crie as variáveis de ambiente com o seguinte comando:
+Crie a variável de ambiente:
 ```bash
-.env.local.dist .env.local
+.env.local
 ```
 
 Adicione suas chaves do seu projeto [Supabase](https://app.supabase.io/) project.
