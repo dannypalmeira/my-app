@@ -7,11 +7,16 @@ import { useRouter } from "next/router";
 
 const Navbar = ({ session }) => {
   const [userRole, setUserRole] = useState(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    fetchUserRole();
-  }, []);
+    if (session?.user) {
+      fetchUserRole();
+    } else {
+      setLoading(false);
+    }
+  }, [session]);
 
   const fetchUserRole = async () => {
     try {
@@ -33,6 +38,8 @@ const Navbar = ({ session }) => {
     } catch (error) {
       console.error("Error fetching user role2:", error);
       alert(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,6 +48,7 @@ const Navbar = ({ session }) => {
     setUserRole(null);
     router.push("/");
   };
+
 
   return (
     <div className={styles.container}>
@@ -51,7 +59,7 @@ const Navbar = ({ session }) => {
         <Link href="/filmes">
           <li className={styles.name}>Home</li>
         </Link>
-        {session?.user ? (
+        {!loading && session?.user && (
           <>
             {userRole === "admin" && (
               <Link href="/adicionar">
@@ -60,16 +68,17 @@ const Navbar = ({ session }) => {
             )}
             {userRole === "usuario" && (
               <>
-            <Link href="/indicar">
-                <li className={styles.buttons}>Indique um filme</li>
-              </Link>
-            </>
+                <Link href="/indicar">
+                  <li className={styles.buttons}>Indique um filme</li>
+                </Link>
+              </>
             )}
             <li className={styles.buttons} onClick={handleLogout}>
               Logout
             </li>
           </>
-        ) : (
+        )}
+        {!loading && !session?.user && (
           <>
             <Link href="/login">
               <li className={styles.buttons}>Login</li>
