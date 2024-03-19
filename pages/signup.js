@@ -10,6 +10,7 @@ const Signup = () => {
   };
 
   const [form, setForm] = useState(initialState);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { email, password, tipo } = form;
 
@@ -18,6 +19,44 @@ const Signup = () => {
       setForm({ ...form, tipo: e.target.value });
     } else {
       setForm({ ...form, [e.target.name]: e.target.value });
+    }
+  };
+
+  const handleSignup = async () => {
+    setIsLoading(true);
+    try {
+      const { user, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      if (!user) {
+        throw new Error("User is null. Signup failed.");
+      }
+
+      const userId = user.id;
+      const { data, error: dbError } = await supabase.from("users").insert([
+        { email, tipo, user_id: userId },
+      ]);
+
+      if (dbError) {
+        throw dbError;
+      }
+
+      alert("Verifique seu e-mail para obter o link de login!");
+      setForm(initialState);
+    } catch (error) {
+      if (error.response?.status === 429) {
+        alert("Muitas tentativas de registro. Por favor, tente novamente mais tarde.");
+      } else {
+        alert(error.message);
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -63,32 +102,10 @@ const Signup = () => {
         </div>
         <button
          className={styles.button}
-        onClick={async () => {
-          const { user, error } = await supabase.auth.signUp({
-            email,
-            password,
-          });
-
-          if (error) {
-            alert(error.message);
-          } else if (user === null) {
-            alert("User is null. Signup failed.");
-          } else {
-            const userId = user.id;
-            const { data, error: dbError } = await supabase
-              .from("users")
-              .insert([{ email, tipo, user_id: userId }]);
-
-            if (dbError) {
-              alert(dbError.message);
-            } else {
-              alert('Verifique seu e-mail para obter o link de login!');
-              setForm(initialState);
-            }
-          }
-        }}
+        onClick={handleSignup}
+        disabled={isLoading}
       >
-        Enviar
+        {isLoading ? "Aguarde..." : "Enviar"}
       </button>
       </div>
     </div>
