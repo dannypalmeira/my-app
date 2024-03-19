@@ -39,4 +39,4 @@ Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o
 
 ## Indicação de Filme
 
-Para ver a lista de indicação [https://docs.google.com/spreadsheets/d/1rnIxCaCXPo6L8sYwWnwfTdlItHckWbnAdNpn0aFxZLw/edit?usp=sharing](clique aqui)
+Para ver a lista de indicação [clique aqui](https://docs.google.com/spreadsheets/d/1rnIxCaCXPo6L8sYwWnwfTdlItHckWbnAdNpn0aFxZLw/edit?usp=sharing)
