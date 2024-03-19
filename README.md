@@ -15,11 +15,12 @@ Crie um arquivo chamado .env.local no diretório raiz do projeto:
 
 Adicione suas chaves do seu projeto [Supabase](https://app.supabase.io/) no arquivo .env.local criado anteriormente.
 
-
 ```dotenv
 SUPABASE_URL=XXX
 SUPABASE_ANON_KEY=XXX
 ```
+
+![alt text](https://github.com/dannypalmeira/pos-fiap-cineadmin/main/db-schema.png?raw=true)
 
 ### Instalar pacotes
 
