@@ -1,4 +1,4 @@
-# React x NextJS x Supabase
+# NextJS x Supabase
 
 ## Iniciando
 Clone este repositório localmente e prossiga para a próxima seção.
