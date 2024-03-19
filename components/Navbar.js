@@ -3,9 +3,11 @@ import Link from "next/link";
 import styles from "../styles/Navbar.module.css";
 import { supabase } from "../utils/supabase";
 import SearchBar from "./SearchBar";
+import { useRouter } from "next/router";
 
 const Navbar = ({ session }) => {
   const [userRole, setUserRole] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetchUserRole();
@@ -30,6 +32,12 @@ const Navbar = ({ session }) => {
     }
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUserRole(null);
+    router.push("/");
+  };
+
   return (
     <div className={styles.container}>
       <div>
@@ -46,7 +54,10 @@ const Navbar = ({ session }) => {
                 <li className={styles.buttons}>Cadastrar um filme</li>
               </Link>
             )}
-            <li className={styles.buttons} onClick={() => supabase.auth.signOut()}>
+            <Link href="/indicar">
+                <li className={styles.buttons}>Indique um filme</li>
+              </Link>
+            <li className={styles.buttons} onClick={handleLogout}>
               Logout
             </li>
           </>
