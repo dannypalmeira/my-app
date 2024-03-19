@@ -4,70 +4,54 @@ import styles from "../../styles/Edit.module.css";
 import { supabase } from "../../utils/supabase";
 
 const Edit = () => {
-  const [filme, setFilme] = useState({
-    titulo: "",
-    imagem: "",
-    ano: "",
-    genero: "",
-    descricao: "",
-  });
+  const [filme, setFilme] = useState(null);
   const router = useRouter();
 
   const { id } = router.query;
   useEffect(() => {
     const getFilme = async () => {
-      if (!id) return;      
-            try {
-        const { data, error } = await supabase
-          .from("filmes")
-          .select("*")
-          .filter("id", "eq", id)
-          .single();
-          if (error) throw error;
-        setFilme(data);      
-      } catch (error) {
-        console.error("Error fetching filme:", error.message);
-      }
+      if (!id) return;
+
+      const { data } = await supabase
+        .from("filmes")
+        .select("*")
+        .filter("id", "eq", id)
+        .single();
+      setFilme(data);
     };
     getFilme();
   }, [id]);
 
   const handleOnChange = (e) => {
-    setFilme((prevFilme) => ({
-      ...prevFilme,
+    setFilme({
+      ...filme,
       [e.target.name]: e.target.value,
-    }));
+    });
   };
 
-  const atualizarFilme = async () => {
-    const { titulo, imagem, ano, genero, descricao } = filme;
-    try {
-      const { data, error } = await supabase
-        .from("filmes")
-        .update({
-          titulo,
-          imagem,
-          ano,
-          genero,
-          descricao,
-        })
-        .eq("id", id)
-        .single();
+  const atualizaFilme = async () => {
+    const { titulo, imagem, genero, ano, descricao } = filme;
+    const user = supabase.auth.user();
+    const { data } = await supabase
+      .from("filmes")
+      .update({
+        titulo,
+        imagem,
+        genero,
+        ano,
+        descricao,
+      })
+      .eq("id", id);
 
-        if (error) throw error;
-        alert("Dados atualizados com sucesso!");
-        router.push("/filmes");
-        
-    } catch (error) {
-       console.error("Error updating filme:", error.message);
-    }    
+    alert("Dados atualizados com sucesso!");
+
+    router.push("/filmes");
   };
-  
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
         <h1 className={styles.title}>Editar Filme</h1>
-        <label className={styles.label}> Título</label>
+        <label className={styles.label}> Titulo:</label>
         <input
           type="text"
           name="titulo"
@@ -75,15 +59,7 @@ const Edit = () => {
           onChange={handleOnChange}
           className={styles.updateInput}
         />
-        <label className={styles.label}> Genero</label>
-        <input
-          type="text"
-          name="genero"
-          value={filme?.genero}
-          onChange={handleOnChange}
-          className={styles.updateInput}
-        />
-        <label className={styles.label}> Ano</label>
+        <label className={styles.label}> Ano:</label>
         <input
           type="text"
           name="ano"
@@ -91,7 +67,7 @@ const Edit = () => {
           onChange={handleOnChange}
           className={styles.updateInput}
         />
-        <label className={styles.label}> Descrição</label>
+        <label className={styles.label}> Descricao:</label>
         <input
           type="text"
           name="descricao"
@@ -99,7 +75,15 @@ const Edit = () => {
           onChange={handleOnChange}
           className={styles.updateInput}
         />
-        <label className={styles.label}> Imagem</label>
+        <label className={styles.label}> Genero:</label>
+        <input
+          type="text"
+          name="genero"
+          value={filme?.genero}
+          onChange={handleOnChange}
+          className={styles.updateInput}
+        />
+        <label className={styles.label}> Imagem:</label>
         <input
           type="text"
           name="imagem"
@@ -108,7 +92,7 @@ const Edit = () => {
           className={styles.updateInput}
         />
 
-        <button onClick={atualizarFilme} className={styles.updateButton}>
+        <button onClick={atualizaFilme} className={styles.updateButton}>
           Atualizar dados
         </button>
       </div>
