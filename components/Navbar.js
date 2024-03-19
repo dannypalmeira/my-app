@@ -24,10 +24,14 @@ const Navbar = ({ session }) => {
         .single();
 
       if (!error && data) {
+        console.log("User role:", data.tipo);
         setUserRole(data.tipo);
+      } else {
+        console.error("Error fetching user role1:", error);
       }
     }
     } catch (error) {
+      console.error("Error fetching user role2:", error);
       alert(error.message);
     }
   };
@@ -44,7 +48,7 @@ const Navbar = ({ session }) => {
         <p className={styles.title}>CineAdmin</p>
       </div>
       <ul className={styles.navContent}>
-        <Link href="/">
+        <Link href="/filmes">
           <li className={styles.name}>Home</li>
         </Link>
         {session?.user ? (
@@ -54,9 +58,13 @@ const Navbar = ({ session }) => {
                 <li className={styles.buttons}>Cadastrar um filme</li>
               </Link>
             )}
+            {userRole === "usuario" && (
+              <>
             <Link href="/indicar">
                 <li className={styles.buttons}>Indique um filme</li>
               </Link>
+            </>
+            )}
             <li className={styles.buttons} onClick={handleLogout}>
               Logout
             </li>
