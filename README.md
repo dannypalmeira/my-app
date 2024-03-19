@@ -3,7 +3,7 @@
 ## Iniciando
 Clone este repositório localmente e prossiga para a próxima seção.
 ```bash
-git clone [https://github.com/dannypalmeira/my-app.git](https://github.com/dannypalmeira/pos-fiap-cineadmin.git)
+git clone https://github.com/dannypalmeira/pos-fiap-cineadmin.git
 ```
 
 ### Configuração necessária
