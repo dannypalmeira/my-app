@@ -20,7 +20,7 @@ SUPABASE_URL=XXX
 SUPABASE_ANON_KEY=XXX
 ```
 
-![alt text](https://github.com/dannypalmeira/pos-fiap-cineadmin/main/db-schema.png?raw=true)
+![DB Schema](https://github.com/dannypalmeira/pos-fiap-cineadmin/blob/main/db-schema.png)
 
 ### Instalar pacotes
 
