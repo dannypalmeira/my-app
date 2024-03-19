@@ -11,6 +11,7 @@ const SearchBar = () => {
       pathname: "/resultado",
       query: { busca: searchTerm }
     });
+    setSearchTerm('');
   };
 
   const handleSubmit = (e) => {
