@@ -1,9 +1,9 @@
 import { supabase } from "../utils/supabase";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "../styles/Create.module.css";
 import { useRouter } from "next/router";
 
-const Create = () => {
+const AdicionarFilme = () => {
   const initialState = {
     titulo: "",
     imagem: "",
@@ -14,6 +14,7 @@ const Create = () => {
 
   const router = useRouter();
   const [filmeData, setFilmeData] = useState(initialState);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { titulo, imagem, genero, descricao, ano } = filmeData;
 
@@ -21,30 +22,37 @@ const Create = () => {
     setFilmeData({ ...filmeData, [e.target.name]: e.target.value });
   };
 
-  const criarNovoFilme = async () => {
-    const user = supabase.auth.user();
+  const cadastrarFilme = async () => {
+    if (!titulo || !genero || !ano || !descricao || !imagem) {
+      setErrorMessage("Por favor, preencha todos os campos.");
+      return;
+    }
 
     const { data, error } = await supabase
-      .from("filmes")
-      .insert({
-        titulo,
-        genero,
-        ano,
-        descricao,
-        imagem,
-        created_by: user?.id,
+    .from("filmes")
+    .insert({
+      titulo,
+      genero,
+      ano,
+      descricao,
+      imagem,
       })
       .single();
-    alert("Filme criado com sucesso!");
-    setFilmeData(initialState);
-    router.push("/filmes");
+
+      if(error){
+        setErrorMessage("Ocorreu um erro ao cadastrar o filme. Tente novamente.");
+      } else {
+        alert("Filme criado com sucesso!");
+        setFilmeData(initialState);
+        router.push("/filmes");
+        }
   };
 
   return (
     <>
       <div className={styles.container}>
+      <h1>Cadastre um novo filme</h1>
         <div className={styles.form}>
-          <p className={styles.title}>Adicione um filme</p>
           <label className={styles.label}>Titulo</label>
           <input
             type="text"
@@ -54,7 +62,7 @@ const Create = () => {
             className={styles.input}
             placeholder="Titulo do filme"
           />
-          <label className={styles.label}>Genero:</label>
+          <label className={styles.label}>Genero</label>
           <input
             type="text"
             name="genero"
@@ -63,7 +71,7 @@ const Create = () => {
             className={styles.input}
             placeholder="Genero"
           />
-          <label className={styles.label}>Ano:</label>
+          <label className={styles.label}>Ano</label>
           <input
             type="text"
             name="ano"
@@ -72,7 +80,7 @@ const Create = () => {
             className={styles.input}
             placeholder="Ano"
           />
-          <label className={styles.label}>Descriçao:</label>
+          <label className={styles.label}>Descrição</label>
           <input
             type="text"
             name="descricao"
@@ -91,13 +99,14 @@ const Create = () => {
             placeholder="imagem"
           />
 
-          <button className={styles.button} onClick={criarNovoFilme}>
+          <button className={styles.button} onClick={cadastrarFilme}>
             Salvar
           </button>
+          {errorMessage && (<p className={styles.error}>{errorMessage}</p>)}
         </div>
       </div>
     </>
   );
 };
 
-export default Create;
+export default AdicionarFilme;

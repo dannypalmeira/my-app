@@ -1,10 +1,8 @@
-
 import { useEffect, useState } from 'react';
-import FilmeCard from '@/components/FilmeCard';
-import Layout from "../components/Layout";
-import styles from "../styles/Home.module.css";
+import FilmeCard from '../components/ListaFilmes';
+import styles from "../styles/Search.module.css";
 import { useRouter } from 'next/router';
-import { supabase } from '@/lib/initSupabase';
+import { supabase } from "../utils/supabase";
 
 const ResultadoPage = () => {
   const router = useRouter();
@@ -27,13 +25,13 @@ const ResultadoPage = () => {
   }, [busca]);
 
   return (
-    <div className={styles.container}>
-    <Layout title={"Busca"}>      
-        <h1>Resultado da busca por "{busca}"</h1>
+    <>
+       <h1>Resultado da busca por "{busca}"</h1>
               <FilmeCard data={searchResults} />
+              <div className={styles.grid}> 
       {searched && searchResults.length === 0 && <p>Nenhum resultado encontrado.</p>}
-      </Layout>
-   </div>
+      </div>
+    </>
   );
 };
 
