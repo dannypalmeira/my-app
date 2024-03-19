@@ -1,20 +1,14 @@
-.body { padding-top: 70px; }
-
-nav .container {
+.container {
   color: #d8d8d8;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
+  padding: 2rem 3rem;
 }
 
 .navContent {
   display: flex;
   align-items: center;
-}
-
-.container h1 {
-  text-align: left;
 }
 
 .title {
@@ -28,7 +22,7 @@ nav .container {
   cursor: pointer;
 }
 
-.button {
+.buttons {
   border: 1px solid #f35815;
   background-color: transparent;
   color: #d8d8d8;
@@ -38,29 +32,3 @@ nav .container {
   transition: all 0.3s ease-in-out;
   margin-right: 1.5rem;
 }
-
-
-.button a:hover {
-  transform: scale(1.1);
-}
-
-
-@media (min-width: 320px) and (max-width: 900px) {
-  nav .container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .container ul {
-    margin: 15px 0;
-  }
-  .container li {
-    display: flex;
-  }
-  .button {
-    margin-right: 0.5rem;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-  }
-  }
