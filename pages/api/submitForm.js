@@ -4,8 +4,6 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { nome, indicacao } = req.body;
 
-    console.log('Data received:', { nome, indicacao });
-
     try {
       const response = await axios.post('https://script.google.com/macros/s/AKfycbwmMFVDD21w_6iL2K6-LqmOsffLoT0DvLI3aozX2iNdfr1tOlEgTRjS9pQdZoa4V_bV/exec', 
         new URLSearchParams({
