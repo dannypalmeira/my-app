@@ -7,6 +7,9 @@ const IndicarFilme = () => {
     nome: "",
     indicacao: "",
   });
+  
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,7 +21,7 @@ const IndicarFilme = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     try {
         const response = await fetch('/api/submitForm', {
           method: 'POST',
@@ -30,11 +33,14 @@ const IndicarFilme = () => {
     
         if (response.ok) {
           alert('Valeu!');
+          router.push("/filmes");
         } else {
           throw new Error('Erro ao enviar indicação. Tente novamente.');
         }
       } catch (error) {
         alert(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -60,8 +66,8 @@ const IndicarFilme = () => {
             placeholder="Sua indicação"
           />
 
-          <button className={styles.button} type="submit">
-            Enviar
+          <button className={styles.button} type="submit" disabled={isLoading}>
+          {isLoading ? "Aguarde..." : "Enviar"}
           </button>
         </form>
       </div>
