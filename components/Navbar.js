@@ -35,48 +35,32 @@ const Navbar = ({ session }) => {
       <div>
         <p className={styles.title}>CineAdmin</p>
       </div>
-      {session?.user ? (
-        <>
-          <ul className={styles.navContent}>
-            <Link href="/filmes">
-              <li className={styles.name}>Filmes</li>
-            </Link>
+      <ul className={styles.navContent}>
+        <Link href="/">
+          <li className={styles.name}>Home</li>
+        </Link>
+        {session?.user ? (
+          <>
             {userRole === "admin" && (
-              <>
-                <Link href="/adicionar">
-                  <button className={styles.buttons}>Cadastrar um filme</button>
-                </Link>
-              </>
+              <Link href="/adicionar">
+                <li className={styles.buttons}>Cadastrar um filme</li>
+              </Link>
             )}
-            {userRole === "usuario" && (
-              <>              
-              </>
-            )}
-            <Link href="/">
-                  <button
-                    className={styles.buttons}
-                    onClick={() => supabase.auth.signOut()}
-                  >
-                    Logout
-                  </button>
-                </Link>
-          </ul>
-        </>
-      ) : (
-        <>
-          <ul className={styles.navContent}>
-          <Link href="/">
-            <li className={styles.name}>Home</li>
-           </Link>
+            <li className={styles.buttons} onClick={() => supabase.auth.signOut()}>
+              Logout
+            </li>
+          </>
+        ) : (
+          <>
             <Link href="/login">
               <li className={styles.buttons}>Login</li>
             </Link>
             <Link href="/signup">
               <li className={styles.buttons}>Cadastre-se</li>
             </Link>
-          </ul>
-        </>
-      )}
+          </>
+        )}
+      </ul>
       <SearchBar />
     </div>
   );
