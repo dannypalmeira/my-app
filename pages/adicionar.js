@@ -78,7 +78,7 @@ const AdicionarFilme = () => {
             value={ano}
             onChange={handleChange}
             className={styles.input}
-            placeholder="Ano"
+            placeholder="0000"
           />
           <label className={styles.label}>Descrição</label>
           <input

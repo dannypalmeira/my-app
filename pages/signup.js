@@ -6,7 +6,7 @@ const Signup = () => {
   const initialState = {
     email: "",
     password: "",
-    tipo:"user",
+    tipo:"usuario",
   };
 
   const [form, setForm] = useState(initialState);

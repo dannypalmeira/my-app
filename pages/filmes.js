@@ -11,13 +11,16 @@ export default function Home({ session }) {
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState({});  
   const [userRole, setUserRole] = useState(null);
-  const user = supabase.auth.user();
 
   useEffect(() => {
+    if (!session?.user){
+        window.location.href = "/";
+    } else {
     fetchFilmes();
     fetchLikedMovies();
     fetchUserRole();
-  }, []);
+    }
+  }, [session]);
 
   const fetchFilmes = async () => {
     try {
@@ -37,14 +40,16 @@ export default function Home({ session }) {
 
 const fetchUserRole = async () =>{
     try {
+        const user = supabase.auth.user();
         const {data, error} = await supabase
         .from("users")
         .select("tipo")
-        .eq("user_id", supabase.auth.user().id)
+        .eq("user_id", user.id)
         .single();
 
-        if(error) throw error;
+        if(!error && user) {
         setUserRole(data.tipo);
+        }
     } catch (error) {
         alert(error.message);
     }
@@ -52,6 +57,7 @@ const fetchUserRole = async () =>{
   
   const fetchLikedMovies = async () => {
     try {
+      const user = supabase.auth.user();
       const { data: likedMovies, error } = await supabase
       .from("likes")
       .select("filme_id")
@@ -73,6 +79,7 @@ const fetchUserRole = async () =>{
   
   const handleLike = async (id) => {
     try {
+      const user = supabase.auth.user();
       if (!user) {
         throw new Error('Usuário não identificado');
       }
@@ -80,6 +87,7 @@ const fetchUserRole = async () =>{
       const isLiked = liked[id];
       
       if (isLiked) {
+        const user = supabase.auth.user();
         const { error } = await supabase
         .from("likes")
         .delete()
