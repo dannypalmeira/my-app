@@ -43,7 +43,7 @@ const Navbar = ({ session }) => {
             </Link>
             {userRole === "admin" && (
               <>
-                <Link href="/create">
+                <Link href="/adicionar">
                   <button className={styles.buttons}>Cadastrar um filme</button>
                 </Link>
               </>
