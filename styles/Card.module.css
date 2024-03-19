@@ -8,21 +8,23 @@
   border: 1px solid #f35815;
   border-radius: 0.5rem;
   position: relative;
+  color: white;
 }
 
 .img {
-    width: 100%;
-    height: auto;
-    padding-bottom: 1em;
+  width: 100%;
+  height: auto;
+  padding-bottom: 1em;
 }
 
 .filmeContainer {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 2rem;
+display: flex;
+justify-content: center;
+gap: 20px;
+flex-wrap: wrap;
+margin-top: 2rem;
 }
+
 .title {
   font-size: 0.9rem;
 }
@@ -34,10 +36,6 @@
   margin-top: 0.5rem;
   font-size: 0.9rem;
 }
-.mb {
-  margin-bottom: 2rem;
-}
-
 .time {
   margin-top: 0.5rem;
   font-size: 0.9rem;

@@ -3,8 +3,7 @@
 html,
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #101010;  
-  color: #ffffff;
+  background-color: #101010;
 }
 
 a {
@@ -16,17 +15,14 @@ ul {
   list-style: none;
 }
 
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: white;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
-
-.space-h-20{
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 1rem;
 }

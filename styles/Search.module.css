@@ -1,33 +1,40 @@
 .searchBar{
     width: 10rem;
-}
-
-.searchBar{
+  }
+  
+  .searchBar{
     display: flex;
     align-items: center;
     position: relative;
-}
-
-.searchBar label{
+  }
+  
+  .searchBar label{
     position: absolute;
     top:.4rem;
     font-size: 1.5rem;
     padding-left: .3rem;
-}
-
-
-.container {
+  }
+  
+  .container {
     display: flex;
     flex-direction: row;
   }
 
+  .grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: white;
+  }
+  
   .formContainer {
     display: flex;
     align-items: center;
     gap: 10px;
   }
-
-.input {
+  
+  .input {
     width: 90%;
     height: 2rem;
     padding: 0.5rem;
@@ -37,8 +44,8 @@
     background-color: transparent;
     color: #fff;
   }
-
-.button {
+  
+  .button {
     border: 1px solid #f35815;
     background-color: transparent;
     color: #d8d8d8;
@@ -52,4 +59,4 @@
     transform: scale(1.1);
   }
   
-
+  
