@@ -24,7 +24,7 @@ Supabase Schema
 
 ### Instalar pacotes
 
-Instale todos os pacotes necessários com o seguinte comando:
+Instale todos os pacotes necessários no diretório raiz do projeto com o seguinte comando:
 ```bash
 npm install
 ```
