@@ -3,7 +3,7 @@
 ## Iniciando
 Clone este repositório localmente e prossiga para a próxima seção.
 ```bash
-git clone https://github.com/dannypalmeira/pos-fiap-cineadmin.git
+git clone https://github.com/dannypalmeira/my-app.git
 ```
 
 ### Configuração necessária
@@ -36,3 +36,7 @@ npm rum dev
 ```
 
 Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
+
+## Indicação de Filme
+
+Para ver a lista de indicação [https://docs.google.com/spreadsheets/d/1rnIxCaCXPo6L8sYwWnwfTdlItHckWbnAdNpn0aFxZLw/edit?usp=sharing](clique aqui)
