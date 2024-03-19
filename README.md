@@ -19,7 +19,7 @@ Adicione suas chaves do seu projeto [Supabase](https://app.supabase.io/) no arqu
 SUPABASE_URL=XXX
 SUPABASE_ANON_KEY=XXX
 ```
-
+Supabase Schema
 ![DB Schema](https://github.com/dannypalmeira/pos-fiap-cineadmin/blob/main/db-schema.png)
 
 ### Instalar pacotes
